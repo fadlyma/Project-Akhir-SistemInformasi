@@ -1,90 +1,102 @@
 "use client";
-import React, { useState } from "react";
+import Image from "next/image";
+import { useState } from "react";
 
-export default function Kontak() {
-  const [nama, setNama] = useState("");
-  const [hp, setHp] = useState("");
-  const [komentar, setKomentar] = useState("");
-
-  const waUrl = `https://wa.me/9889987873918?text=Halo,%20saya%20${encodeURIComponent(
-    nama
-  )}%0ANo.HP:%20${encodeURIComponent(hp)}%0APesan:%20${encodeURIComponent(
-    komentar
-  )}`;
+export default function CeritaPage() {
+  const [rating, setRating] = useState(0);
 
   return (
-    <section className="w-full bg-gradient-to-b from-[#f3f1e3] to-[#f0ebd4] py-20 px-6 md:px-12 lg:px-20">
-      <h1 className="text-center text-4xl font-bold mb-14">Kontak</h1>
+    <section className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden pb-32">
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        {/* Kiri */}
-        <div className="flex flex-col gap-6 pl-10">
-          <h2 className="text-3xl font-semibold">Hubungi Kami</h2>
+      {/* Background gradasi putih -> e9e7c7 */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#ffffff] to-[#e9e7c7]"></div>
 
-          {/* Nomor Telepon */}
-          <p className="text-lg text-gray-700 font-medium">9889987873918</p>
-
-          {/* Illustration */}
-          <img
-            src="/mnt/data/Screenshot 2025-11-21 111354.png"
-            alt="HP Ilustrasi"
-            className="w-[400px] md:w-[450px] lg:w-[520px]"
-          />
-        </div>
-
-          {/* Illustration */}
-          <img
-            src="/mnt/data/05133f89-0110-4007-a47d-2224b880a250.png"
-            alt="HP Ilustrasi"
-            className="w-[380px] md:w-[430px] lg:w-[500px] mx-auto"
-          />
-        </div>
-
-        {/* Form */}
-        <div className="flex flex-col gap-6 bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
-          <input
-            type="text"
-            placeholder="Nama"
-            value={nama}
-            onChange={(e) => setNama(e.target.value)}
-            className="w-full p-4 rounded-xl border border-gray-300 focus:outline-blue-500 text-black"
-          />
-
-          <input
-            type="text"
-            placeholder="No. Hp"
-            value={hp}
-            onChange={(e) => setHp(e.target.value)}
-            className="w-full p-4 rounded-xl border border-gray-300 focus:outline-blue-500 text-black"
-          />
-
-          <textarea
-            placeholder="Komentar"
-            rows={5}
-            value={komentar}
-            onChange={(e) => setKomentar(e.target.value)}
-            className="w-full p-4 rounded-xl border border-gray-300 focus:outline-blue-500 text-black"
-          ></textarea>
-
-          <a
-            href={waUrl}
-            target="_blank"
-            className="w-full bg-green-600 text-white py-3 rounded-xl text-lg font-semibold text-center hover:bg-green-700 transition-all"
-          >
-            Kirim ke WhatsApp
-          </a>
-        </div>
-
-
-      {/* Maps */}
-      <div className="w-full mt-20">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127405.26588662892!2d105.199966!3d-5.364382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e40dbf3d9f72f3b%3A0x3039d80b220cc80!2sUniversitas%20Teknokrat%20Indonesia!5e0!3m2!1sid!2sid!4v1700000000000"
-          className="w-full h-[420px] rounded-xl border-none"
-          allowFullScreen
-          loading="lazy"
-        ></iframe>
+      {/* Tekstur garis samar */}
+      <div className="absolute inset-0 opacity-20">
+        <Image
+          src="/images/tekturgaris.svg"
+          alt="Tekstur garis"
+          fill
+          className="object-cover"
+        />
       </div>
+
+      {/* Judul */}
+      <div className="relative z-10 text-center mb-10 px-6 pt-28">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
+          Ceritakan Momen Serumumu
+        </h2>
+        <p className="text-gray-600 text-sm md:text-base mt-2">
+          Bagikan pengalaman bahagiamu bersama{" "}
+          <span className="font-semibold text-blue-600">LamiGo</span> dan bantu
+          wisatawan lain menemukan perjalanan terbaik.
+        </p>
+      </div>
+
+      {/* Konten utama */}
+      <div className="relative z-10 flex flex-col md:flex-row items-center justify-center w-full px-6 md:px-20 space-y-8 md:space-y-0 md:space-x-10">
+
+        {/* FORM */}
+        <div className="w-full md:w-1/2 flex flex-col items-center text-center space-y-6">
+          <form className="w-full max-w-md space-y-4">
+
+            <input
+              type="text"
+              placeholder="Nama"
+              className="w-full p-3 rounded-lg border border-gray-300 bg-white focus:ring-2 focus:ring-blue-400"
+            />
+
+            <input
+              type="text"
+              placeholder="Status"
+              className="w-full p-3 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+
+            <textarea
+              placeholder="Komentar"
+              rows={4}
+              className="w-full p-3 rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400"
+            ></textarea>
+
+            <button
+              type="submit"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition"
+            >
+              Kirim
+            </button>
+          </form>
+        </div>
+
+        {/* GAMBAR */}
+        <div className="w-full md:w-1/2 flex justify-center relative">
+          <Image
+            src="/images/31.png"
+            alt="Traveler"
+            width={700}
+            height={700}
+            className="object-contain"
+          />
+        </div>
+      </div>
+
+      {/* MAPS */}
+      <div className="relative z-10 w-full flex justify-center mt-16 px-6 md:px-20">
+        <div className="w-full max-w-4xl h-[350px] md:h-[450px] rounded-xl overflow-hidden shadow-lg border border-gray-300">
+
+          {/* MAPS IFRAME */}
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!4v1732168448292!6m8!1m7!1sn_qv-ZH6WGV3pdaPVCtQyg!2m2!1d-5.387658084242111!2d105.2587204316309!3f274.87!4f-3.68!5f0.7820865974627469"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen={true}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+
+        </div>
+      </div>
+
     </section>
   );
 }

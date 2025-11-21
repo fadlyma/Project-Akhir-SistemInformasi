@@ -5,10 +5,10 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
 const navItems = [
-  { label: "Beranda", href: "#beranda" },
-  { label: "Tentang Kami", href: "#tentang" },
-  { label: "Galeri", href: "#galeri" },
-  { label: "Kontak", href: "#kontak" },
+  { label: "Beranda", href: "/" },
+  { label: "Tentang Kami", href: "/About" },
+  { label: "Galeri", href: "/Galeri" },
+  { label: "Kontak", href: "/Kontak" },
 ];
 
 export default function Navbar() {
