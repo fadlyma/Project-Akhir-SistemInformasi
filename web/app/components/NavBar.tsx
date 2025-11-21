@@ -1,47 +1,55 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
 const navItems = [
-  { label: "Beranda", href: "/" },
-  { label: "Tentang Kami", href: "/About" },
-  { label: "Galeri", href: "/Galeri" },
-  { label: "Kontak", href: "/Kontak" },
+  { label: "Beranda", id: "beranda" },
+  { label: "Tentang Kami", id: "tentang" },
+  { label: "Galeri", id: "galeri" },
+  { label: "Kontak", id: "kontak" },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("Beranda");
 
-  const handleClick = (label: string, href: string) => {
+  const handleScroll = (label: string, id: string) => {
     setActive(label);
     setOpen(false);
-    document.getElementById(href.replace("#", ""))?.scrollIntoView({
-      behavior: "smooth",
-    });
+
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md shadow-sm px-6 md:px-16">
-      <div className="max-w-7xl mx-auto flex items-center justify-between h-16">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-[#eadbc8]/80 backdrop-blur-md shadow-sm">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-16 h-20">
 
-        {/* Logo */}
-        <div className="text-xl font-bold text-black cursor-pointer">
-          LOGO TOKO
+        {/* LOGO (TIDAK DIUBAH UKURAN) */}
+        <div className="cursor-pointer">
+          <Image
+            src="/images/WARUNG.PNG"
+            alt="Logo Warung"
+            width={120}
+            height={120}
+            className="object-contain"
+          />
         </div>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex gap-8">
+        {/* DESKTOP MENU */}
+        <div className="hidden md:flex gap-10">
           {navItems.map((item) => (
             <button
               key={item.label}
-              onClick={() => handleClick(item.label, item.href)}
-              className={`transition-all duration-200 ${
+              onClick={() => handleScroll(item.label, item.id)}
+              className={`text-[15px] tracking-wide transition-all duration-200 ${
                 active === item.label
-                  ? "font-bold text-black"
-                  : "font-normal text-black/70"
+                  ? "font-semibold text-black"
+                  : "font-normal text-[#444] hover:text-black"
               }`}
             >
               {item.label}
@@ -49,23 +57,23 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Mobile Button */}
+        {/* MOBILE TOGGLE BUTTON */}
         <button className="md:hidden" onClick={() => setOpen(!open)}>
           {open ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* MOBILE MENU */}
       {open && (
-        <div className="md:hidden flex flex-col gap-4 px-6 py-4 bg-white shadow-md">
+        <div className="md:hidden bg-white/95 shadow-md backdrop-blur-md px-6 py-4 space-y-4">
           {navItems.map((item) => (
             <button
               key={item.label}
-              onClick={() => handleClick(item.label, item.href)}
-              className={`text-left transition-all duration-200 ${
+              onClick={() => handleScroll(item.label, item.id)}
+              className={`block w-full text-left py-2 text-[15px] tracking-wide transition-all duration-200 ${
                 active === item.label
-                  ? "font-bold text-black"
-                  : "font-normal text-black/70"
+                  ? "font-semibold text-black"
+                  : "font-medium text-[#444] hover:text-black"
               }`}
             >
               {item.label}
